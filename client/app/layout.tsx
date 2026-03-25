@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "DRIP",
   description: "DRIP — Premium t-shirts, curated.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.svg",
     shortcut: "/favicon.svg",
     apple: "/apple-touch-icon.png",
   },
