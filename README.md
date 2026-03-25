@@ -19,6 +19,13 @@
 - **Cart** 
 - **Product Detail Page** 
 
+
+## Deployment
+| app | provider | url |
+|---|---|---|
+|client|vercel|[https://drip.arme.dev](https://drip.arme.dev)|
+|server|railway|[https://drip-api.arme.dev](https://drip-api.arme.dev)|
+
 ## Prerequisites
 
 - Node.js 20+
