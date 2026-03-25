@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { addToCartSchema, updateCartSchema } from '../schemas/cart.schema'
-import { getCart, addToCart, updateCartItem, removeFromCart, mergeGuestCart } from '../services/cart.service'
+import { getCart, addToCart, updateCartItem, removeFromCart, mergeGuestCart, clearCart } from '../services/cart.service'
 
 const getFilter = (req: Request) => {
   if (req.user) return { userId: req.user._id }
@@ -53,6 +53,15 @@ export const merge = async (req: Request, res: Response, next: NextFunction): Pr
     const { guestId } = req.body
     if (!guestId) { res.status(400).json({ message: 'guestId required' }); return }
     const cart = await mergeGuestCart(req.user._id, guestId)
+    res.json(cart)
+  } catch (err) { next(err) }
+}
+
+export const clear = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const filter = getFilter(req)
+    if (!filter) { res.json({ items: [] }); return }
+    const cart = await clearCart(filter)
     res.json(cart)
   } catch (err) { next(err) }
 }

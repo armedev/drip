@@ -61,6 +61,11 @@ export const removeFromCart = async (filter: CartFilter, productId: string) => {
   return populate(Cart.findOne(filter))
 }
 
+export const clearCart = async (filter: CartFilter) => {
+  await Cart.deleteOne(filter)
+  return { ...filter, items: [] }
+}
+
 export const mergeGuestCart = async (userId: string, guestId: string) => {
   const guestCart = await Cart.findOne({ guestId })
   if (!guestCart || guestCart.items.length === 0) {

@@ -51,3 +51,14 @@ export const useRemoveFromCart = () => {
     },
   })
 }
+
+export const useClearCart = () => {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: () => api.delete('/api/cart').then(r => r.data),
+    onSuccess: (data) => {
+      qc.setQueryData(['cart'], data)
+      useCartStore.getState().setCart(data)
+    },
+  })
+}

@@ -5,17 +5,20 @@ import { useCartStore } from '@/store/cartStore'
 import { useAuthStore } from '@/store/authStore'
 import { formatPrice } from '@/lib/utils'
 import { AuthModal } from './AuthModal'
+import { CheckoutModal } from './CheckoutModal'
 
 export function CartSummary() {
   const { totalItems, totalPrice } = useCartStore()
   const token = useAuthStore(s => s.token)
   const [authOpen, setAuthOpen] = useState(false)
+  const [checkoutOpen, setCheckoutOpen] = useState(false)
 
   const handleCheckout = () => {
     if (!token) {
       setAuthOpen(true)
       return
     }
+    setCheckoutOpen(true)
   }
 
   return (
@@ -43,6 +46,7 @@ export function CartSummary() {
         )}
       </div>
       <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
+      <CheckoutModal isOpen={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
     </>
   )
 }
