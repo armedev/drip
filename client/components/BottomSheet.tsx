@@ -34,7 +34,7 @@ export function BottomSheet({ isOpen, onClose, title, children }: BottomSheetPro
           <h2 className="text-text-primary font-bold text-lg">{title}</h2>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-studio-elevated flex items-center justify-center text-text-muted hover:text-text-primary transition-colors"
+            className="w-8 h-8 rounded-full bg-studio-elevated flex items-center justify-center text-text-muted hover:text-text-primary transition-colors cursor-pointer"
           >
             ×
           </button>

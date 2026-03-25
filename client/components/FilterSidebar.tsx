@@ -21,7 +21,7 @@ export function FilterSidebar() {
         {hasActiveFilters && (
           <button
             onClick={filters.reset}
-            className="text-accent-gold text-xs font-mono hover:text-accent-gold-dim transition-colors px-2 py-1 rounded-lg bg-accent-gold/10 hover:bg-accent-gold/15"
+            className="text-accent-gold text-xs font-mono hover:text-accent-gold-dim transition-colors px-2 py-1 rounded-lg bg-accent-gold/10 hover:bg-accent-gold/15 cursor-pointer"
           >
             Reset
           </button>

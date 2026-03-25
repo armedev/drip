@@ -110,10 +110,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             onClick={() =>
               addToCart.mutate({ productId: product._id, quantity: 1 })
             }
-            disabled={outOfStock}
+            disabled={outOfStock || addToCart.isPending}
             className="w-full btn-gold font-mono font-bold py-2 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:transform-none disabled:after:hidden"
           >
-            {outOfStock ? "Out of stock" : "Add to Cart"}
+            {outOfStock ? "Out of stock" : addToCart.isPending ? "Adding..." : "Add to Cart"}
           </button>
         )}
       </div>

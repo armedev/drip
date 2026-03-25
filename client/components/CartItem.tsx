@@ -38,15 +38,16 @@ export function CartItem({ item }: CartItemProps) {
               updateItem.mutate({ productId: product._id, quantity: item.quantity - 1 })
             }
           }}
-          className="w-8 h-8 glass-light rounded-lg text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all duration-200 font-mono text-sm"
+          disabled={updateItem.isPending || removeItem.isPending}
+          className="w-8 h-8 glass-light rounded-lg text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all duration-200 font-mono text-sm cursor-pointer disabled:opacity-30"
         >
           −
         </button>
         <span className="font-mono text-text-primary w-10 text-center text-sm">{item.quantity}</span>
         <button
           onClick={() => updateItem.mutate({ productId: product._id, quantity: item.quantity + 1 })}
-          disabled={atMax}
-          className="w-8 h-8 glass-light rounded-lg text-text-secondary hover:text-text-primary hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 font-mono text-sm"
+          disabled={atMax || updateItem.isPending}
+          className="w-8 h-8 glass-light rounded-lg text-text-secondary hover:text-text-primary hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200 font-mono text-sm cursor-pointer"
         >
           +
         </button>
@@ -56,7 +57,8 @@ export function CartItem({ item }: CartItemProps) {
       )}
       <button
         onClick={() => removeItem.mutate(product._id)}
-        className="text-text-muted hover:text-error hover:drop-shadow-[0_0_8px_rgba(224,92,92,0.3)] text-lg ml-1 transition-all duration-300"
+        disabled={removeItem.isPending}
+        className="text-text-muted hover:text-error hover:drop-shadow-[0_0_8px_rgba(224,92,92,0.3)] text-lg ml-1 transition-all duration-300 cursor-pointer disabled:opacity-30"
       >
         ×
       </button>

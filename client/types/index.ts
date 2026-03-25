@@ -1,3 +1,9 @@
+export interface User {
+  _id: string
+  name: string
+  email: string
+}
+
 export interface Product {
   _id: string
   name: string
@@ -36,6 +42,7 @@ export interface CartItem {
 
 export interface Cart {
   _id: string
-  userId: string
+  userId?: string
+  guestId?: string
   items: CartItem[]
 }

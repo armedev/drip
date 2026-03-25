@@ -62,9 +62,15 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   }
 
   const handleAddToCart = () => {
-    addToCart.mutate({ productId: product._id, quantity: qty })
-    setAdded(true)
-    setTimeout(() => setAdded(false), 2000)
+    addToCart.mutate(
+      { productId: product._id, quantity: qty },
+      {
+        onSuccess: () => {
+          setAdded(true)
+          setTimeout(() => setAdded(false), 2000)
+        },
+      }
+    )
   }
 
   return (
@@ -108,7 +114,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setQty(q => Math.max(1, q - 1))}
-                className="w-9 h-9 glass-light rounded-lg text-text-secondary hover:text-text-primary transition-colors flex items-center justify-center"
+                className="w-9 h-9 glass-light rounded-lg text-text-secondary hover:text-text-primary transition-colors flex items-center justify-center cursor-pointer"
               >
                 <Minus className="w-4 h-4" />
               </button>
@@ -116,7 +122,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
               <button
                 onClick={() => setQty(q => q + 1)}
                 disabled={inCart + qty >= product.quantity}
-                className="w-9 h-9 glass-light rounded-lg text-text-secondary hover:text-text-primary disabled:opacity-30 transition-colors flex items-center justify-center"
+                className="w-9 h-9 glass-light rounded-lg text-text-secondary hover:text-text-primary disabled:opacity-30 transition-colors flex items-center justify-center cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
               </button>
@@ -129,14 +135,14 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
           <button
             onClick={handleAddToCart}
-            disabled={outOfStock || atMax}
+            disabled={outOfStock || atMax || addToCart.isPending}
             className={`w-full font-mono font-bold py-4 rounded-xl text-sm transition-all duration-300 ${
               added
                 ? 'bg-green-500/20 text-green-400 border border-green-500/30'
                 : 'btn-gold disabled:opacity-30 disabled:cursor-not-allowed disabled:after:hidden'
             }`}
           >
-            {outOfStock ? 'Out of stock' : added ? '✓ Added to cart' : `Add to Cart — ${formatPrice(product.price * qty)}`}
+            {outOfStock ? 'Out of stock' : addToCart.isPending ? 'Adding...' : added ? '✓ Added to cart' : `Add to Cart — ${formatPrice(product.price * qty)}`}
           </button>
 
           <div className="mt-8 pt-6 border-t border-border-studio">

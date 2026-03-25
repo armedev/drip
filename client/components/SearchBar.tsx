@@ -143,7 +143,7 @@ export function SearchBar() {
                 setSearch("");
                 inputRef.current?.focus();
               }}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -224,7 +224,7 @@ export function SearchBar() {
                     >
                       <button
                         onClick={() => handleSearch(r)}
-                        className="flex items-center gap-3 flex-1 text-left"
+                        className="flex items-center gap-3 flex-1 text-left cursor-pointer"
                       >
                         <Clock className="w-3.5 h-3.5 text-text-muted" />
                         <span className="text-sm text-text-primary">{r}</span>
@@ -235,7 +235,7 @@ export function SearchBar() {
                           removeRecentSearch(r);
                           setRecent(getRecentSearches());
                         }}
-                        className="text-text-muted hover:text-error opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="text-text-muted hover:text-error opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
@@ -255,7 +255,7 @@ export function SearchBar() {
                     <button
                       key={t}
                       onClick={() => handleSearch(t)}
-                      className="flex items-center gap-1.5 text-xs font-mono text-text-secondary bg-studio-elevated/60 px-3 py-1.5 rounded-full hover:text-accent-gold hover:bg-accent-gold/10 transition-colors"
+                      className="flex items-center gap-1.5 text-xs font-mono text-text-secondary bg-studio-elevated/60 px-3 py-1.5 rounded-full hover:text-accent-gold hover:bg-accent-gold/10 transition-colors cursor-pointer"
                     >
                       <TrendingUp className="w-3 h-3" />
                       {t}
