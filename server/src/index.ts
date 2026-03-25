@@ -14,8 +14,9 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const DEPLOYED_HOST = process.env.CLIENT_HOST || "";
 
-app.use(cors({ origin: ["http://localhost:3000"] }));
+app.use(cors({ origin: ["http://localhost:3000", DEPLOYED_HOST] }));
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
