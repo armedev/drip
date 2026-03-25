@@ -15,6 +15,11 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "DRIP",
   description: "DRIP — Premium t-shirts, curated.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.svg",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
