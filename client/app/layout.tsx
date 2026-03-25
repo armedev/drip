@@ -4,6 +4,7 @@ import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/next";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const ibmPlexMono = IBM_Plex_Mono({
@@ -38,6 +39,7 @@ export default function RootLayout({
           <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-accent-gold/[0.015] rounded-full blur-[100px]" />
         </div>
         <div className="relative z-10">
+          <Analytics />
           <Providers>
             <Navbar />
             <main className="pt-16">{children}</main>
